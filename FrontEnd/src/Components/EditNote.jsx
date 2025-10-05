@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
+import api from "../../api";
 
 function EditNote() {
   const [data, setData] = useState([]);
@@ -33,8 +34,8 @@ function EditNote() {
     }
 
     try {
-      const response = await axios.put(
-        `http://localhost:3000/api/notes/${location.state.id}`,
+      const response = await api.put(
+        `/notes/${location.state.id}`,
         {
           title,
           content,

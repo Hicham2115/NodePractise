@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import Hero from "./Hero";
+import api from "../../api";
 
 function Card() {
   const [data, setData] = useState([]);
@@ -14,8 +15,8 @@ function Card() {
   const navigate = useNavigate("");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/notes/")
+    api
+      .get("/notes/")
       .then((response) => {
         console.log(response.data.notes);
         setData(response.data.notes);
@@ -34,8 +35,8 @@ function Card() {
   }
 
   function handleDelete(note) {
-    axios
-      .delete(`http://localhost:3000/api/notes/${note._id}`)
+    api
+      .delete(`notes/${note._id}`)
       .then((response) => {
         console.log(response.data);
         setAlert(true);
@@ -46,8 +47,8 @@ function Card() {
     setRefersh(true);
   }
   function handleDeleteAll() {
-    axios
-      .delete(`http://localhost:3000/api/notes/deleteall/`)
+    api
+      .delete(`notes/deleteall/`)
       .then((response) => {
         console.log(response.data);
         setAlert(true);

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
+import api from "../../api";
 function AddNote() {
   const navigate = useNavigate("");
   const [title, setTitle] = useState("");
@@ -17,7 +17,7 @@ function AddNote() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/notes/", {
+      const response = await api.post("notes/", {
         title,
         content,
       });
